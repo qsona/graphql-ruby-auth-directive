@@ -10,7 +10,7 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: OpenStruct.new({ role: (rand < 0.5 ? "manager" : "ippanjin") }),
     }
     result = GraphqlRubyAuthDirectiveSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
